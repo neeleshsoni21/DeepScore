@@ -62,7 +62,7 @@ class DeepScore:
 
         self.__input_dir = os.path.join(self.__dataset_root, self.__rnd_num )
 
-        self.__depth_exe = os.path.join(self.__root ,'/Externals/DEPTH/bin/DEPTH')
+        self.__depth_exe = os.path.join(self.__root ,'Externals/DEPTH/bin/DEPTH')
         self.__depth_iter = '10'
 
         self.__models_path = os.path.join(self.__root ,'/src/Models/')
