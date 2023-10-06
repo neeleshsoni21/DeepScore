@@ -19,6 +19,15 @@
 
 import deepscore as ds
 
+
+#Run DeepScore by first generating input files using DEPTH and then processing
+ds.example_run(data_directory = './output/', 
+    rand_id='pdb_3tw2', 
+    skip_depth_run = False, 
+    overwrite_directory=True)
+
+
+#Run DeepScore by skipping DEPTH runs (This works only if you provide depth files seperately)
 ds.example_run(data_directory = './output/', 
     rand_id='pdb_3tw2', 
     skip_depth_run = True, 

@@ -189,7 +189,7 @@ class DeepScore:
 
         if os.path.isfile(depscore_score_file_residue):
             self.ResidueDepths = Read_Models_Residue_Depths(depscore_score_file_residue)
-            print("Success")
+            
         else:
             print("File doesn't Exists!. Exiting",depscore_score_file_residue)
             exit()
@@ -197,7 +197,7 @@ class DeepScore:
 
         if os.path.isfile(depscore_score_file_atomic):
             self.AtomicDepths = Read_Models_Atomic_Depths(depscore_score_file_atomic)
-            print("Success")
+            
         else:
             print("File doesn't Exists!. Exiting",depscore_score_file_atomic)
             exit()
@@ -230,7 +230,8 @@ class DeepScore:
         plt.xlabel("Residue Numbers")
         plt.ylabel("Residue Depths")
         plt.savefig(depthfile)
-        plt.show()
+        #plt.show()
+        print("Plots are saved in ",depthfile)
 
         return
 
@@ -255,10 +256,11 @@ class DeepScore:
         depthfile =  os.path.join(self.__input_dir , self.__pdb_user+'_atomicdepth.png')
         plt.colorbar()
         plt.title("Atomic Depths Plot")
-        plt.xlabel("Atom Numbers")
+        plt.xlabel("Residue Number")
         plt.ylabel("Atomic Depths")
         plt.savefig(depthfile)
-        plt.show()
+        #plt.show()
+        print("Plots are saved in ",depthfile)
 
         return
 

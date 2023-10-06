@@ -60,11 +60,23 @@ def example_run( data_directory: str = deepscore_root+'/DATASET',
 
     ds_obj.Read_Solvated_Models_Depths()
 
+    #DEPTH values are stored in ds_obj.ResidueDepths python dictionary.
+    #Key-value pairs: key: (chain,residuenumber), value: [DEPTH value , Standard deviation]
+    
     #for k,v in ds_obj.ResidueDepths.items():
     #    print(k,v)
 
     #for k,v in ds_obj.AtomicDepths.items():
     #    print(k,v)
+
+    for Residue_ID, Depth_vals in ds_obj.ResidueDepths.items():
+        chain,residuenumber = Residue_ID
+        DEPTH_value , Depth_SD =  Depth_vals
+    
+    for Residue_ID, Depth_vals in ds_obj.AtomicDepths.items():
+        chain,residuenumber,atomtype = Residue_ID
+        DEPTH_value , Depth_SD =  Depth_vals
+        
 
     ds_obj.Plot_Residue_Depths()
 
