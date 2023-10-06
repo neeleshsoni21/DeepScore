@@ -38,7 +38,6 @@ class DeepScore:
                 random_id,
                 dataset_root=deepscore_root+'/DATASET',
                 pdb_user=deepscore_root+'/example/3tw2.pdb',
-                pdb_chain='A',
                 overwrite_directory=False):
 
         from src.version import __version__
@@ -49,8 +48,9 @@ class DeepScore:
         self.__pdb_user_org = pdb_user
 
         self.__pdb_user = basename(pdb_user)
-        self.__pdb_chain = pdb_chain
-        self.__pdb_name = os.path.join(self.__pdb_user[:-4], self.__pdb_chain, '.pdb')
+        #self.__pdb_chain = pdb_chain
+        #self.__pdb_name = self.__pdb_user[:-4]+self.__pdb_chain+'.pdb'
+        self.__pdb_name = self.__pdb_user
 
         # Get a 8 digit random number as parameter
         self.__rnd_num = str(random_id)
@@ -153,9 +153,9 @@ class DeepScore:
         print("\nSolvating the Protein")
         # Execute DEPTH for the given PDB file
         self.DEPTH_CMD  = self.__depth_exe
-        self.DEPTH_CMD += " -i " + self.__input_dir + self.__pdb_name 
-        self.DEPTH_CMD += " -o " + self.__input_dir + "Depth_Files/" + self.__pdb_name + "_out"
-        self.DEPTH_CMD += " -keep " + self.__input_dir + "Solvated_Files/" + self.__pdb_name + "_sol"
+        self.DEPTH_CMD += " -i " + os.path.join(self.__input_dir,self.__pdb_name) 
+        self.DEPTH_CMD += " -o " + os.path.join(self.__input_dir , self.__pdb_name + "_out")
+        self.DEPTH_CMD += " -keep " + os.path.join(self.__input_dir , self.__pdb_name + "_sol")
         self.DEPTH_CMD += " -n " + self.__depth_iter
 
         subprocess.run(self.DEPTH_CMD, shell=True, check=True)

@@ -29,7 +29,6 @@ deepscore_root = str(Path(__file__).parent.parent)
 def example_run( data_directory: str = deepscore_root+'/DATASET',
                      rand_id: str = "tmp_"+str(int(random() * 100000000)),
                      example_pdb: str = deepscore_root+'/example/2grn.pdb',
-                     example_chain: str = 'A',
                      skip_depth_run = False,
                      overwrite_directory = False):
     """
@@ -39,7 +38,6 @@ def example_run( data_directory: str = deepscore_root+'/DATASET',
         data_directory (str): Data directory of new files
         rand_id (str): Unique string for identifying the output
         example_pdb (str): PDB format input file for scoring
-        example_chain (str): Chain id of the PDB file for consideration
         skip_depth_run (bool): Compute depth or Not
         overwrite_directory (bool): Overwrite output directory or not
 
@@ -49,8 +47,7 @@ def example_run( data_directory: str = deepscore_root+'/DATASET',
     """
 
     # GARLIC class instantiation
-    ds_obj = DeepScore(rand_id, data_directory, example_pdb,
-                        example_chain, overwrite_directory)
+    ds_obj = DeepScore(rand_id, data_directory, example_pdb,overwrite_directory)
     
 
     if skip_depth_run==False:
