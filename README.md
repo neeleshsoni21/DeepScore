@@ -19,14 +19,24 @@ DEPTH code: if depth-generated files are not provided as input
 **********************
 Compiling DEPTH: See Also; http://cospi.iiserpune.ac.in/depth/download/
 **********************
-tar -xvzf depth_source.tar.gz
-cd depth_source/bin
+
+cd deepscore/Externals/DEPTH/bin
 make
-./DEPTH -i 2grn.pdb -o 2grn
-For options run ./DEPTH wihtout any inputs
 
 
-
-To run the code with an example file, use the following:
+To run the DeepScore with an example file, use the following:
 
 python simple_API.py
+
+This will plot the residue-wise depth values and atomwise depth values. The actual values can be accessed using DeepScore object as follows:
+
+#DEPTH values are stored in ds_obj.ResidueDepths python dictionary.
+#Key-value pairs: key: (chain,residuenumber), value: [DEPTH value , Standard deviation]
+
+    for Residue_ID, Depth_vals in ds_obj.ResidueDepths.items():
+        chain,residuenumber = Residue_ID
+        DEPTH_value , Depth_SD =  Depth_vals
+    
+    for Residue_ID, Depth_vals in ds_obj.AtomicDepths.items():
+        chain,residuenumber,atomtype = Residue_ID
+        DEPTH_value , Depth_SD =  Depth_vals
